@@ -29,60 +29,6 @@ class FireStoreService{
     }
 }
 
-
-class UserService {
-    private let db = Firestore.firestore()
-
-    func fetchUsers(completion: @escaping ([User]) -> Void) {
-        db.collection("test").getDocuments { (snapshot, error) in
-            var users: [User] = []
-            
-            if let documents = snapshot?.documents {
-                for document in documents {
-                    let data = document.data()
-                    if let y = data["yes"] as? String, let n = data["no"] as? String {
-                        let user = User(yes: y, no: n)
-                        users.append(user)
-                    }
-                }
-            }
-            
-            completion(users)
-        }
-    }
-}
-
-
-//class FireStoreManager: ObservableObject {
-//    @Published var question: [String] = [""]
-//    @Published var answer: [String] = [""]
-//
-//    func fetchData(){
-//        let db = Firestore.firestore()
-//        let docRef = db.collection("iOS").document("UI")
-//        docRef.getDocument { (document, error) in
-//            var qA: QA
-//            
-//            
-//            guard error == nil else {
-//                print("error", error ?? "")
-//                return
-//            }
-//
-//            if let document = document, document.exists {
-//                let data = document.data()
-//                if let data = data {
-//                    
-//                    let q = data["Question"] as? [String] ?? [""]
-//                    let a = data["nickname"] as? [String] ?? [""]
-//                    let qa = QA(question: q, answer: a)
-//                    qA = qa
-//                }
-//            }
-//            
-//        }
-//    }
-//
 //    func setData(){
 //        let db = Firestore.firestore()
 //        db.collection("iOS").document("UI").updateData(
@@ -94,22 +40,3 @@ class UserService {
 //                 "`Left Constraint`와 `Leading Constraint`은 Auto Layout에서 뷰의 가로 방향(수평) 위치를 지정하는 제약 조건입니다. 하지만 두 제약 조건에는 약간의 차이점이 있습니다:\n\n1. Left Constraint:\n- `Left Constraint`는 뷰의 가로 방향 위치를 지정할 때, 왼쪽 여백(leading margin)을 기준으로 합니다.\n- 왼쪽 여백은 뷰의 좌측 가장자리와 슈퍼뷰의 좌측 가장자리 사이의 거리를 나타냅니다.\n\n- 기본적으로 `Left Constraint`는 왼쪽을 기준으로 하기 때문에, 왼쪽에서 오른쪽으로 정렬된 언어(영어, 한국어 등)의 레이아웃에 주로 사용됩니다.\n\n2. Leading Constraint:\n- `Leading Constraint`는 뷰의 가로 방향 위치를 지정할 때, 앞부분(leading edge)을 기준으로 합니다.\n- 앞부분은 뷰의 주된 콘텐츠가 시작되는 가장자리를 나타냅니다. 기본적으로 왼쪽 가장자리와 동일한 위치입니다.\n- `Leading Constraint`는 주로 왼쪽에서 오른쪽이 아닌, 오른쪽에서 왼쪽으로 정렬된 언어(아랍어, 히브리어 등)의 레이아웃에 사용됩니다.\n\n                 주의해야 할 점은 `Left Constraint`와 `Leading Constraint`는 다양한 상황에서 유연하게 사용될 수 있지만, 정확한 결과를 얻기 위해서는 레이아웃에 영향을 주는 다른 제약 조건과 함께 고려되어야 합니다. 뷰의 방향성, 언어 설정 등을 고려하여 올바른 제약 조건을 선택하여 사용해야 합니다."
 //                ])])
 
-//        ["Question" : FieldValue.arrayUnion(
-//            ["Bounds 와 Frame의 차이점을 설명하시오",
-//             "UIStackView의 장점에 대해 말해보세요.",
-//            "Autolayout Constraint의 Priority에 대해 설명해보세요.",
-//             "UITableView의 셀마다 높이를 어떻게 설정하였나요",
-//             "Left Constraint와 leading Constraint의 차이점은 무엇인가요"
-//            ])])
-
-//    }
-
-
-
-//    init() {
-//        fetchData()
-//        print(question)
-//        print(answer)
-////        setData()
-//    }
-//}
