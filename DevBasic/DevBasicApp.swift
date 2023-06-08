@@ -18,6 +18,7 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseFirestore
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -30,15 +31,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 @main
-struct YourApp: App {
+struct DevBasicApp: App {
   // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-
+//    @StateObject var firestoreManager = FireStoreManager()
   var body: some Scene {
     WindowGroup {
       NavigationView {
         ContentView()
+//              .environmentObject(firestoreManager)
       }
     }
   }
