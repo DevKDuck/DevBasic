@@ -11,8 +11,8 @@ import FirebaseFirestore
 class FireStoreService{
     private let db = Firestore.firestore()
     
-    func fetchData(doc: String, completion: @escaping (QAList) -> Void) {
-        db.collection("iOS").document(doc).getDocument { (snapshot, error) in
+    func fetchData(collec: String, doc: String, completion: @escaping (QAList) -> Void) {
+        db.collection(collec).document(doc).getDocument { (snapshot, error) in
             var qa = QAList(question: [""], answer: [""])
             
             if let data = snapshot?.data(){
