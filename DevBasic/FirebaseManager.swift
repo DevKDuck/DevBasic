@@ -11,23 +11,53 @@ import FirebaseFirestore
 class FireStoreService{
     private let db = Firestore.firestore()
     
-    func fetchUsers(completion: @escaping (QAList) -> Void) {
-        db.collection("iOS").getDocuments { (snapshot, error) in
+    func fetchiOS_UI(completion: @escaping (QAList) -> Void) {
+        db.collection("iOS").document("UI").getDocument { (snapshot, error) in
             var qa = QAList(question: [""], answer: [""])
             
-            if let documetns = snapshot?.documents{
-                for documents in documetns{
-                    let data = documents.data()
-                    if let q = data["Question"] as? [String], let a = data["Answer"] as? [String]{
-                        qa = QAList(question: q, answer: a)
-                    }
+            if let data = snapshot?.data(){
+                if let q = data["Question"] as? [String], let a = data["Answer"] as? [String]{
+                    qa = QAList(question: q, answer: a)
                 }
             }
             completion(qa)
         }
-        
+    }
+    
+    
+    func fetchiOS_iOS(completion: @escaping (QAList) -> Void) {
+        db.collection("iOS").document("iOS").getDocument { (snapshot, error) in
+            var qa = QAList(question: [""], answer: [""])
+            
+            if let data = snapshot?.data(){
+                if let q = data["Question"] as? [String], let a = data["Answer"] as? [String]{
+                    qa = QAList(question: q, answer: a)
+                }
+            }
+            completion(qa)
+        }
     }
 }
+        
+        
+        
+        
+//        db.collection("iOS").getDocuments { (snapshot, error) in
+//            var qa = QAList(question: [""], answer: [""])
+//
+//            if let documetns = snapshot?.documents{
+//                for documents in documetns{
+//                    let data = documents.data()
+//                    if let q = data["Question"] as? [String], let a = data["Answer"] as? [String]{
+//                        qa = QAList(question: q, answer: a)
+//                    }
+//                }
+//            }
+//            completion(qa)
+//        }
+        
+//    }
+//}
 
 //    func setData(){
 //        let db = Firestore.firestore()
