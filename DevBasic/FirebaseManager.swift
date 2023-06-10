@@ -11,22 +11,8 @@ import FirebaseFirestore
 class FireStoreService{
     private let db = Firestore.firestore()
     
-    func fetchiOS_UI(completion: @escaping (QAList) -> Void) {
-        db.collection("iOS").document("UI").getDocument { (snapshot, error) in
-            var qa = QAList(question: [""], answer: [""])
-            
-            if let data = snapshot?.data(){
-                if let q = data["Question"] as? [String], let a = data["Answer"] as? [String]{
-                    qa = QAList(question: q, answer: a)
-                }
-            }
-            completion(qa)
-        }
-    }
-    
-    
-    func fetchiOS_iOS(completion: @escaping (QAList) -> Void) {
-        db.collection("iOS").document("iOS").getDocument { (snapshot, error) in
+    func fetchData(doc: String, completion: @escaping (QAList) -> Void) {
+        db.collection("iOS").document(doc).getDocument { (snapshot, error) in
             var qa = QAList(question: [""], answer: [""])
             
             if let data = snapshot?.data(){
@@ -40,25 +26,7 @@ class FireStoreService{
 }
         
         
-        
-        
-//        db.collection("iOS").getDocuments { (snapshot, error) in
-//            var qa = QAList(question: [""], answer: [""])
-//
-//            if let documetns = snapshot?.documents{
-//                for documents in documetns{
-//                    let data = documents.data()
-//                    if let q = data["Question"] as? [String], let a = data["Answer"] as? [String]{
-//                        qa = QAList(question: q, answer: a)
-//                    }
-//                }
-//            }
-//            completion(qa)
-//        }
-        
-//    }
-//}
-
+        //MARK: iOS - UI 관련
 //    func setData(){
 //        let db = Firestore.firestore()
 //        db.collection("iOS").document("UI").updateData(

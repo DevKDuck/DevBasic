@@ -62,12 +62,12 @@ struct ContentView: View {
     }
     
     func fetchQA() {
-        FireStoreService().fetchiOS_UI { qa in
+        FireStoreService().fetchData(doc: "UI") { qa in
             self.questionsToUI = qa.question
             self.answersToUI = qa.answer
         }
         
-        FireStoreService().fetchiOS_iOS { qa in
+        FireStoreService().fetchData(doc: "iOS") { qa in
             self.questionsToiOS = qa.question
             self.answersToiOS = qa.answer
         }
@@ -118,27 +118,4 @@ struct ContentView: View {
 //                                            "UITableView란?",
 //                                            "UICollectionView란?"])])
 //}
-
-
-//// Cell을 선택했을 때 이동될 View.
-struct DetailView: View {
-    //    @EnvironmentObject var firestoreManager: FireStoreManager
-    
-    @State private var answers: [String] = [""]
-    
-    var body: some View {
-        ForEach(answers, id:\.self){ answer in
-            Text(answer)
-        }.onAppear{
-            fetchAnswer()
-        }
-    }
-    
-    func fetchAnswer(){
-        FireStoreService().fetchiOS_UI { qa in
-            self.answers = qa.answer
-        }
-    }
-    
-}
 
