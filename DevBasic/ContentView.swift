@@ -43,7 +43,6 @@ struct ContentView: View {
                         ForEach(questionsToiOS.indices, id:\.self){ index in
                             NavigationLink(destination: Text(answersToiOS[index]), tag: index, selection: $selectedRow){
                                 Text(questionsToiOS[index])
-                                
                             }
                         }
                     }
@@ -81,6 +80,41 @@ struct ContentView: View {
                 Image(systemName: "swift")
                 Text("Swift")
             }
+            
+            NavigationView{
+                List{
+                    Section(header: Text("Computer Science")){
+                        
+                    }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("Computer Science")
+                    .onAppear{
+                        
+                    }
+                }
+            }
+            .tabItem{
+                Image(systemName: "desktopcomputer")
+                Text("Computer Science")
+            }
+            
+            NavigationView{
+                List{
+                    Section(header: Text("SwiftUI")){
+                        
+                    }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("SwiftUI")
+                    .onAppear{
+                        
+                    }
+                }
+            }
+            .tabItem{
+                Image(systemName: "swift")
+                Text("SwiftUI")
+            }
+
         }
     }
     
