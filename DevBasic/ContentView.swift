@@ -119,9 +119,6 @@ struct ContentView: View {
                 }
                 .listStyle(GroupedListStyle())
                 .navigationBarTitle("Swift")
-                .onAppear {
-                    //                    fetchQA()
-                }
             }
             .tabItem{
                 Image(systemName: "swift")
@@ -155,11 +152,9 @@ struct ContentView: View {
                             }
                             )}
                     }
-                    
-                    
-                    .listStyle(GroupedListStyle())
-                    .navigationBarTitle("Computer Science")
                 }
+                .listStyle(GroupedListStyle())
+                .navigationBarTitle("Computer Science")
             }
             .tabItem{
                 Image(systemName: "desktopcomputer")
@@ -214,15 +209,10 @@ struct ContentView: View {
                             }
                             )}
                     }
-                    
-                    
-                    
-                    .listStyle(GroupedListStyle())
-                    .navigationBarTitle("Etc")
-                    .onAppear{
-                        
-                    }
                 }
+                .listStyle(GroupedListStyle())
+                .navigationBarTitle("Etc")
+ 
             }
             .tabItem{
                 Image(systemName: "ellipsis.circle")
