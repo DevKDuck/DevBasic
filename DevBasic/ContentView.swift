@@ -56,38 +56,39 @@ struct ContentView: View {
     @State private var questionsToDataStructure: [String] = [""]
     @State private var answersToDataStructure: [String] = [""]
     
+    @State private var isLoading = true
     
     
-    @State private var selectedRow: Int? = nil
     
     var body: some View {
         
         TabView{
             NavigationView{
-                List{
-                    Section(header: Text("UI관련")){
-                        
-                        ForEach(questionsToUI.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content: answersToUI[index]),label:{
-                                Text(questionsToUI[index])
-                            }
-                            )}
-                    }
-                    Section(header: Text("iOS")){
-                        
-                        ForEach(questionsToiOS.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content: answersToiOS[index]), label:{
-                                Text(questionsToiOS[index])
-                            }
-                            )}
-                    }
+                if isLoading{
+                    ProgressView().progressViewStyle(CircularProgressViewStyle())
+                        .padding()
                 }
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle("iOS")
-                .onAppear {
-                    fetchQA()
+                else{
+                    List{
+                        Section(header: Text("UI관련")){
+                            ForEach(questionsToUI.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content: answersToUI[index]),label:{
+                                    Text(questionsToUI[index])
+                                }
+                                )}
+                        }
+                        Section(header: Text("iOS")){
+                            
+                            ForEach(questionsToiOS.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content: answersToiOS[index]), label:{
+                                    Text(questionsToiOS[index])
+                                }
+                                )}
+                        }
+                    }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("iOS")
                 }
-                
             }
             .tabItem{
                 Image(systemName: "applelogo")
@@ -134,10 +135,6 @@ struct ContentView: View {
                             NavigationLink(destination: ContentScrollView(content: answersToCSCommon[index]), label:{
                                 Text(questionsToCSCommon[index])
                             })
-                            
-                            //                            NavigationLink(destination: ContentScrollView(content:answersToCSCommon[index]), tag: index, selection: $selectedRow){
-                            //                                Text(questionsToCSCommon[index])
-                            //                            }
                         }
                         
                     }
@@ -233,10 +230,15 @@ struct ContentView: View {
             }
             
         }
+        .onAppear {
+            fetchQA()
+        }
     }
+    
     
     func fetchQA() {
 //                setData()
+        
         FireStoreService().fetchData(collec: "iOS", doc: "UI") { qa in
             self.questionsToUI = qa.question
             self.answersToUI = qa.answer
@@ -295,6 +297,11 @@ struct ContentView: View {
             self.questionsToDataStructure = qa.question
             self.answersToDataStructure = qa.answer
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+            self.isLoading = false
+        }
+        
     }
 }
 
