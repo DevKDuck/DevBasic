@@ -24,6 +24,7 @@ struct ContentScrollView: View{
     }
 }
 
+
 struct ContentView: View {
     
     @State private var questionsToUI: [String] = [""]
@@ -61,173 +62,343 @@ struct ContentView: View {
     
     
     var body: some View {
-        
-        TabView{
-            NavigationView{
-                if isLoading{
-                    ProgressView().progressViewStyle(CircularProgressViewStyle())
-                        .padding()
+        if UIDevice.current.userInterfaceIdiom == .pad { // iPad인 경우
+            // iPad에 맞는 뷰를 표시하는 코드
+            TabView{
+                NavigationView{
+                    if isLoading{
+                        ProgressView().progressViewStyle(CircularProgressViewStyle())
+                            .padding()
+                    }
+                    else{
+                        List{
+                            Section(header: Text("UI관련")){
+                                ForEach(questionsToUI.indices, id:\.self){ index in
+                                    NavigationLink(destination: ContentScrollView(content: answersToUI[index]),label:{
+                                        Text(questionsToUI[index])
+                                    }
+                                    )}
+                            }
+                            Section(header: Text("iOS")){
+                                
+                                ForEach(questionsToiOS.indices, id:\.self){ index in
+                                    NavigationLink(destination: ContentScrollView(content: answersToiOS[index]), label:{
+                                        Text(questionsToiOS[index])
+                                    }
+                                    )}
+                            }
+                        }
+                        .listStyle(GroupedListStyle())
+                        .navigationBarTitle("iOS")
+                    }
                 }
-                else{
+                .tabItem{
+                    Image(systemName: "applelogo")
+                    Text("iOS")
+                }
+                NavigationView{
                     List{
-                        Section(header: Text("UI관련")){
-                            ForEach(questionsToUI.indices, id:\.self){ index in
-                                NavigationLink(destination: ContentScrollView(content: answersToUI[index]),label:{
-                                    Text(questionsToUI[index])
+                        Section(header: Text("Swift")){
+                            
+                            ForEach(questionsToSwift.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToSwift[index]),label:{
+                                    Text(questionsToSwift[index])
+                                    
                                 }
                                 )}
                         }
-                        Section(header: Text("iOS")){
+                        
+                        Section(header: Text("RxSwift")){
                             
-                            ForEach(questionsToiOS.indices, id:\.self){ index in
-                                NavigationLink(destination: ContentScrollView(content: answersToiOS[index]), label:{
-                                    Text(questionsToiOS[index])
+                            ForEach(questionsToRxSwift.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToRxSwift[index]),label:{
+                                    Text(questionsToRxSwift[index])
+                                    
+                                }
+                                )}
+                        }
+                        
+                    }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("Swift")
+                }
+                .tabItem{
+                    Image(systemName: "swift")
+                    Text("Swift")
+                }
+                
+                NavigationView{
+                    List{
+                        Section(header: Text("Computer Science ")){
+                            ForEach(questionsToCSCommon.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content: answersToCSCommon[index]), label:{
+                                    Text(questionsToCSCommon[index])
+                                })
+                            }
+                            
+                        }
+                        
+                        Section(header: Text("Network")){
+                            
+                            ForEach(questionsToNetwork.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToNetwork[index]),label:{
+                                    Text(questionsToNetwork[index])
+                                }
+                                )}
+                        }
+                        Section(header: Text("DataStructure")){
+                            
+                            ForEach(questionsToDataStructure.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToDataStructure[index]),label:{
+                                    Text(questionsToDataStructure[index])
                                 }
                                 )}
                         }
                     }
                     .listStyle(GroupedListStyle())
-                    .navigationBarTitle("iOS")
+                    .navigationBarTitle("Computer Science")
                 }
-            }
-            .tabItem{
-                Image(systemName: "applelogo")
-                Text("iOS")
-            }
-            NavigationView{
-                List{
-                    Section(header: Text("Swift")){
+                .tabItem{
+                    Image(systemName: "desktopcomputer")
+                    Text("Computer Science")
+                }
+                
+                NavigationView{
+                    List{
+                        Section(header: Text("Reference")){
+                            
+                            ForEach(questionsToReference.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToReference[index]),label:{
+                                    Text(questionsToReference[index])
+                                }
+                                )}
+                        }
                         
-                        ForEach(questionsToSwift.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToSwift[index]),label:{
-                                Text(questionsToSwift[index])
-                                
-                            }
-                            )}
-                    }
-                    
-                    Section(header: Text("RxSwift")){
+                        Section(header: Text("Functional Programming")){
+                            
+                            ForEach(questionsToFunctionalProgramming.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToFunctionalProgramming[index]),label:{
+                                    Text(questionsToFunctionalProgramming[index])
+                                    
+                                }
+                                )}
+                        }
                         
-                        ForEach(questionsToRxSwift.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToRxSwift[index]),label:{
-                                Text(questionsToRxSwift[index])
-                                
-                            }
-                            )}
+                        Section(header: Text("Architecture")){
+                            
+                            ForEach(questionsToArchitecture.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToArchitecture[index]),label:{
+                                    Text(questionsToArchitecture[index])
+                                }
+                                )}
+                        }
+                        
+                        Section(header: Text("Release")){
+                            
+                            ForEach(questionsToRelease.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToRelease[index]),label:{
+                                    Text(questionsToRelease[index])
+                                    
+                                }
+                                )}
+                        }
+                        Section(header: Text("SwiftUI+Combine")){
+                            
+                            ForEach(questionsToSwiftUICombine.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToSwiftUICombine[index]),label:{
+                                    Text(questionsToSwiftUICombine[index])
+                                    
+                                }
+                                )}
+                        }
                     }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("Etc")
                     
                 }
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle("Swift")
+                .tabItem{
+                    Image(systemName: "ellipsis.circle")
+                    Text("Etc")
+                }
+                
             }
-            .tabItem{
-                Image(systemName: "swift")
-                Text("Swift")
+            .onAppear {
+                fetchQA()
             }
-            
-            NavigationView{
-                List{
-                    Section(header: Text("Computer Science ")){
-                        ForEach(questionsToCSCommon.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content: answersToCSCommon[index]), label:{
-                                Text(questionsToCSCommon[index])
-                            })
+            .tabViewStyle(PageTabViewStyle())
+        } else { // iPhone인 경우
+            // iPhone에 맞는 뷰를 표시하는 코드
+            TabView{
+                NavigationView{
+                    if isLoading{
+                        ProgressView().progressViewStyle(CircularProgressViewStyle())
+                            .padding()
+                    }
+                    else{
+                        List{
+                            Section(header: Text("UI관련")){
+                                ForEach(questionsToUI.indices, id:\.self){ index in
+                                    NavigationLink(destination: ContentScrollView(content: answersToUI[index]),label:{
+                                        Text(questionsToUI[index])
+                                    }
+                                    )}
+                            }
+                            Section(header: Text("iOS")){
+                                
+                                ForEach(questionsToiOS.indices, id:\.self){ index in
+                                    NavigationLink(destination: ContentScrollView(content: answersToiOS[index]), label:{
+                                        Text(questionsToiOS[index])
+                                    }
+                                    )}
+                            }
+                        }
+                        .listStyle(GroupedListStyle())
+                        .navigationBarTitle("iOS")
+                    }
+                }
+                .tabItem{
+                    Image(systemName: "applelogo")
+                    Text("iOS")
+                }
+                NavigationView{
+                    List{
+                        Section(header: Text("Swift")){
+                            
+                            ForEach(questionsToSwift.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToSwift[index]),label:{
+                                    Text(questionsToSwift[index])
+                                    
+                                }
+                                )}
+                        }
+                        
+                        Section(header: Text("RxSwift")){
+                            
+                            ForEach(questionsToRxSwift.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToRxSwift[index]),label:{
+                                    Text(questionsToRxSwift[index])
+                                    
+                                }
+                                )}
                         }
                         
                     }
-                    
-                    Section(header: Text("Network")){
-                        
-                        ForEach(questionsToNetwork.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToNetwork[index]),label:{
-                                Text(questionsToNetwork[index])
-                            }
-                            )}
-                    }
-                    Section(header: Text("DataStructure")){
-                        
-                        ForEach(questionsToDataStructure.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToDataStructure[index]),label:{
-                                Text(questionsToDataStructure[index])
-                            }
-                            )}
-                    }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("Swift")
                 }
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle("Computer Science")
-            }
-            .tabItem{
-                Image(systemName: "desktopcomputer")
-                Text("Computer Science")
-            }
-            
-            NavigationView{
-                List{
-                    Section(header: Text("Reference")){
-                        
-                        ForEach(questionsToReference.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToReference[index]),label:{
-                                Text(questionsToReference[index])
-                            }
-                            )}
-                    }
-                    
-                    Section(header: Text("Functional Programming")){
-                        
-                        ForEach(questionsToFunctionalProgramming.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToFunctionalProgramming[index]),label:{
-                                Text(questionsToFunctionalProgramming[index])
-                                
-                            }
-                            )}
-                    }
-                    
-                    Section(header: Text("Architecture")){
-                        
-                        ForEach(questionsToArchitecture.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToArchitecture[index]),label:{
-                                Text(questionsToArchitecture[index])
-                            }
-                            )}
-                    }
-                    
-                    Section(header: Text("Release")){
-                        
-                        ForEach(questionsToRelease.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToRelease[index]),label:{
-                                Text(questionsToRelease[index])
-                                
-                            }
-                            )}
-                    }
-                    Section(header: Text("SwiftUI+Combine")){
-                        
-                        ForEach(questionsToSwiftUICombine.indices, id:\.self){ index in
-                            NavigationLink(destination: ContentScrollView(content:answersToSwiftUICombine[index]),label:{
-                                Text(questionsToSwiftUICombine[index])
-                                
-                            }
-                            )}
-                    }
+                .tabItem{
+                    Image(systemName: "swift")
+                    Text("Swift")
                 }
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle("Etc")
- 
+                
+                NavigationView{
+                    List{
+                        Section(header: Text("Computer Science ")){
+                            ForEach(questionsToCSCommon.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content: answersToCSCommon[index]), label:{
+                                    Text(questionsToCSCommon[index])
+                                })
+                            }
+                            
+                        }
+                        
+                        Section(header: Text("Network")){
+                            
+                            ForEach(questionsToNetwork.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToNetwork[index]),label:{
+                                    Text(questionsToNetwork[index])
+                                }
+                                )}
+                        }
+                        Section(header: Text("DataStructure")){
+                            
+                            ForEach(questionsToDataStructure.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToDataStructure[index]),label:{
+                                    Text(questionsToDataStructure[index])
+                                }
+                                )}
+                        }
+                    }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("Computer Science")
+                }
+                .tabItem{
+                    Image(systemName: "desktopcomputer")
+                    Text("Computer Science")
+                }
+                
+                NavigationView{
+                    List{
+                        Section(header: Text("Reference")){
+                            
+                            ForEach(questionsToReference.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToReference[index]),label:{
+                                    Text(questionsToReference[index])
+                                }
+                                )}
+                        }
+                        
+                        Section(header: Text("Functional Programming")){
+                            
+                            ForEach(questionsToFunctionalProgramming.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToFunctionalProgramming[index]),label:{
+                                    Text(questionsToFunctionalProgramming[index])
+                                    
+                                }
+                                )}
+                        }
+                        
+                        Section(header: Text("Architecture")){
+                            
+                            ForEach(questionsToArchitecture.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToArchitecture[index]),label:{
+                                    Text(questionsToArchitecture[index])
+                                }
+                                )}
+                        }
+                        
+                        Section(header: Text("Release")){
+                            
+                            ForEach(questionsToRelease.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToRelease[index]),label:{
+                                    Text(questionsToRelease[index])
+                                    
+                                }
+                                )}
+                        }
+                        Section(header: Text("SwiftUI+Combine")){
+                            
+                            ForEach(questionsToSwiftUICombine.indices, id:\.self){ index in
+                                NavigationLink(destination: ContentScrollView(content:answersToSwiftUICombine[index]),label:{
+                                    Text(questionsToSwiftUICombine[index])
+                                    
+                                }
+                                )}
+                        }
+                    }
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle("Etc")
+                    
+                }
+                .tabItem{
+                    Image(systemName: "ellipsis.circle")
+                    Text("Etc")
+                }
+                
             }
-            .tabItem{
-                Image(systemName: "ellipsis.circle")
-                Text("Etc")
+            .onAppear {
+                fetchQA()
             }
-            
         }
-        .onAppear {
-            fetchQA()
-        }
+        
+        
+        
     }
     
     
+    
     func fetchQA() {
-//                setData()
+        //                setData()
         
         FireStoreService().fetchData(collec: "iOS", doc: "UI") { qa in
             self.questionsToUI = qa.question
