@@ -13,8 +13,8 @@
 ## Preview
 
 ### iPhone
-<img src="https://github.com/kyechan99/capsule-render/assets/96559947/40cbdc60-e694-468a-ad07-24821dd7d6f6" width="450" height="800">
-<img src="https://github.com/kyechan99/capsule-render/assets/96559947/5e05b274-b6f4-4f92-ba48-4ff1b6a28575" width="450" height="800">
+<img src="https://github.com/kyechan99/capsule-render/assets/96559947/40cbdc60-e694-468a-ad07-24821dd7d6f6" width="300" height="700">
+<img src="https://github.com/kyechan99/capsule-render/assets/96559947/5e05b274-b6f4-4f92-ba48-4ff1b6a28575" width="300" height="700">
 
 ### iPad
 
