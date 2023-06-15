@@ -18,5 +18,5 @@
 
 ### iPad
 
-<img src="https://github.com/kyechan99/capsule-render/assets/96559947/0407febe-2566-42b7-b0ee-fb128dc6cc01" width="450" height="600">
-<img src="https://github.com/kyechan99/capsule-render/assets/96559947/b99fda81-548f-4b80-862e-9ee5df0c8454" width="450" height="600">
+<img src="https://github.com/kyechan99/capsule-render/assets/96559947/0407febe-2566-42b7-b0ee-fb128dc6cc01" width="300" height="600">
+<img src="https://github.com/kyechan99/capsule-render/assets/96559947/b99fda81-548f-4b80-862e-9ee5df0c8454" width="300" height="600">
