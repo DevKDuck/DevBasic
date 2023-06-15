@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import Combine
 
 struct QAList {
     let question: [String]
@@ -399,47 +400,47 @@ struct ContentView: View {
     
     func fetchQA() {
         //                setData()
-        
+
         FireStoreService().fetchData(collec: "iOS", doc: "UI") { qa in
             self.questionsToUI = qa.question
             self.answersToUI = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "iOS",doc: "iOS") { qa in
             self.questionsToiOS = qa.question
             self.answersToiOS = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "Swift",doc: "주요 문법") { qa in
             self.questionsToSwift = qa.question
             self.answersToSwift = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "Swift",doc: "RxSwift") { qa in
             self.questionsToRxSwift = qa.question
             self.answersToRxSwift = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "Etc",doc: "참조") { qa in
             self.questionsToReference = qa.question
             self.answersToReference = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "Etc",doc: "Functional Programming") { qa in
             self.questionsToFunctionalProgramming = qa.question
             self.answersToFunctionalProgramming = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "Etc",doc: "Architecture") { qa in
             self.questionsToArchitecture = qa.question
             self.answersToArchitecture = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "Etc",doc: "Release") { qa in
             self.questionsToRelease = qa.question
             self.answersToRelease = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "Etc",doc: "SwiftUI + Combine") { qa in
             self.questionsToSwiftUICombine = qa.question
             self.answersToSwiftUICombine = qa.answer
@@ -448,21 +449,21 @@ struct ContentView: View {
             self.questionsToCSCommon = qa.question
             self.answersToCSCommon = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "CS",doc: "네트워크") { qa in
             self.questionsToNetwork = qa.question
             self.answersToNetwork = qa.answer
         }
-        
+
         FireStoreService().fetchData(collec: "CS",doc: "자료구조") { qa in
             self.questionsToDataStructure = qa.question
             self.answersToDataStructure = qa.answer
         }
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 3){
             self.isLoading = false
         }
-        
+
     }
 }
 
