@@ -35,11 +35,16 @@ struct DevBasicApp: App {
   // register app delegate for Firebase setup
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 //    @StateObject var firestoreManager = FireStoreManager()
+    let qA = QAList(question: [""], answer: [""])
+    
+//    let viewModel = QaListViewModel(qa: qA)
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        ContentView()
+//        ContentView()
+//          QAView(viewModel: )
 //              .environmentObject(firestoreManager)
+          
       }
     }
   }

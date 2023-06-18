@@ -9,10 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import Combine
 
-struct QAList {
-    let question: [String]
-    let answer: [String]
-}
+
 
 struct ContentScrollView: View{
     var content: String
