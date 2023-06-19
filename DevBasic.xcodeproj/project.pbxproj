@@ -17,7 +17,6 @@
 		8C4029122A30654F0092B75E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8C4029112A30654F0092B75E /* FirebaseFirestoreSwift */; };
 		8C4029142A3065C20092B75E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4029132A3065C20092B75E /* FirebaseManager.swift */; };
 		8CF60A1E2A3EF54A0092BA43 /* QAList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF60A1D2A3EF54A0092BA43 /* QAList.swift */; };
-		8CF60A222A3EFA4E0092BA43 /* QAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF60A212A3EFA4E0092BA43 /* QAView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		8C1817452A30644200FA9A24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8C4029132A3065C20092B75E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8CF60A1D2A3EF54A0092BA43 /* QAList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QAList.swift; sourceTree = "<group>"; };
-		8CF60A212A3EFA4E0092BA43 /* QAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QAView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +68,6 @@
 				8CF60A1C2A3EF5230092BA43 /* Model */,
 				8C1817452A30644200FA9A24 /* GoogleService-Info.plist */,
 				8C1817372A3050A900FA9A24 /* DevBasicApp.swift */,
-				8C1817392A3050A900FA9A24 /* ContentView.swift */,
 				8C18173B2A3050AC00FA9A24 /* Assets.xcassets */,
 				8C18173D2A3050AC00FA9A24 /* Preview Content */,
 			);
@@ -104,7 +101,7 @@
 		8CF60A202A3EFA2B0092BA43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8CF60A212A3EFA4E0092BA43 /* QAView.swift */,
+				8C1817392A3050A900FA9A24 /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,7 +189,6 @@
 				8CF60A1E2A3EF54A0092BA43 /* QAList.swift in Sources */,
 				8C18173A2A3050A900FA9A24 /* ContentView.swift in Sources */,
 				8C1817382A3050A900FA9A24 /* DevBasicApp.swift in Sources */,
-				8CF60A222A3EFA4E0092BA43 /* QAView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
